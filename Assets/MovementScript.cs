@@ -10,6 +10,7 @@ public class MovementScript : MonoBehaviour
         if (LocationMovementCache.CanMove)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, LocationMovementCache.LocationToMoveTo, this.movementSpeed);
+            this.transform.position = new Vector3(this.transform.position.x, 10, this.transform.position.z);
         }
     }
 }
