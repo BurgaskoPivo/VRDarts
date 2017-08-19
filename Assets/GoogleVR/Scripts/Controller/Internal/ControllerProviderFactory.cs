@@ -21,21 +21,23 @@ namespace Gvr.Internal {
   static class ControllerProviderFactory {
     /// Provides a concrete implementation of IControllerProvider appropriate for the current
     /// platform. This method never returns null. In the worst case, it might return a dummy
-    /// provider if the platform is not supported.
-    static internal IControllerProvider CreateControllerProvider(GvrController owner) {
-#if UNITY_EDITOR || UNITY_STANDALONE
-      // Use the Controller Emulator.
-      return new EmulatorControllerProvider(owner.emulatorConnectionMode, owner.enableGyro,
-          owner.enableAccel);
+    /// provider if the platform is not supported. For demo purposes the emulator controller
+    /// is returned in the editor and in Standalone buids, for use inside the desktop player.
+    static internal IControllerProvider CreateControllerProvider(GvrControllerInput owner) {
+// Use emualtor in editor, and in Standalone builds (for demo purposes).
+#if UNITY_EDITOR
+      // Use the Editor controller provider which supports the controller emulator and the mouse.
+      return new EditorControllerProvider(owner.emulatorConnectionMode);
 #elif UNITY_ANDROID
       // Use the GVR C API.
-      return new AndroidNativeControllerProvider(owner.enableGyro, owner.enableAccel);
+      return new AndroidNativeControllerProvider();
 #else
       // Platform not supported.
       Debug.LogWarning("No controller support on this platform.");
       return new DummyControllerProvider();
-#endif
+#endif  // UNITY_EDITOR || UNITY_STANDALONE
     }
   }
 }
 /// @endcond
+

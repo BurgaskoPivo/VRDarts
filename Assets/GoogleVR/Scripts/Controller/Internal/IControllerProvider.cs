@@ -21,6 +21,9 @@ namespace Gvr.Internal {
   /// communicates with the controller emulator via USB or WiFi. If running on a real
   /// Android device, we use an implementation that uses the underlying Daydream controller API.
   interface IControllerProvider {
+    /// True if controller has battery status support.
+    bool SupportsBatteryStatus { get; }
+
     /// Notifies the controller provider that the application has paused.
     void OnPause();
 
@@ -32,3 +35,4 @@ namespace Gvr.Internal {
   }
 }
 /// @endcond
+

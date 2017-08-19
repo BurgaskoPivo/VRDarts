@@ -20,6 +20,9 @@ namespace Gvr.Internal {
   /// Used in platforms that do not support controllers.
   class DummyControllerProvider : IControllerProvider {
     private ControllerState dummyState = new ControllerState();
+    public bool SupportsBatteryStatus {
+      get { return false; }
+    }
     internal DummyControllerProvider() {}
     public void ReadState(ControllerState outState) {
       outState.CopyFrom(dummyState);
@@ -29,3 +32,4 @@ namespace Gvr.Internal {
   }
 }
 /// @endcond
+
