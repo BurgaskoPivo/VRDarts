@@ -9,8 +9,9 @@ public class TargetCounter : MonoBehaviour
 	void Update () {
 	    if (this.TargetCount <= 0)
 	    {
-            PlayerPrefs.SetInt("CurrentScore", ScoreManager.Score);
-	        SceneManager.LoadSceneAsync("WinScreen");
+
+            //PlayerPrefs.SetInt("CurrentScore", ScoreManager.Score);
+	        //SceneManager.LoadSceneAsync("WinScreen");
 	    }
 	}
 }

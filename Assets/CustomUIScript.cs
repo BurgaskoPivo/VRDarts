@@ -17,6 +17,6 @@ public class CustomUIScript : MonoBehaviour, IGvrGazeResponder
 
     public void OnGazeTrigger()
     {
-        Debug.Log("Logging");
+        //Debug.Log("Logging");
     }
 }
